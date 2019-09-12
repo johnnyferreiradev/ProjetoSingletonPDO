@@ -111,7 +111,7 @@
             return $data;
         }  
         
-        public function listAll() {
+        public static function listAll() {
             $pdo = Conexao::getInstance();
             $sql = 'SELECT * FROM ator ORDER BY ator_id DESC';
             $q = $pdo->query($sql);
