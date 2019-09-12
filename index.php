@@ -2,20 +2,23 @@
 
 require __DIR__.'/App/autoload.php';
 
-// use App\Controller\ClienteController;
-// use App\Model\Cliente;
-
-// $obj = new ClienteController();
-// $obj->listar();
-
 use DB\Conexao as DB;
+use App\Classes\Ator;
 
-$banco = DB::getInstance();
+$ator1 = new Ator();
+$ator1->setPrimeiroNome('John');
+$ator1->setUltimoNome('Doe 1');
+$ator1->setUltimaAtualizacao(date('Y-m-d H:i:s'));
 
-$consulta = $banco->query("SELECT * FROM cliente");
+echo $ator1->save();
 
-foreach($consulta as $linha) {
-    echo "<pre>";
-    print_r($linha);
-    echo "</pre>";
-}
+// $ator = Ator::atorTeste();
+// $banco = DB::getInstance();
+
+// $consulta = $banco->query("SELECT * FROM cliente");
+
+// foreach($consulta as $linha) {
+//     echo "<pre>";
+//     print_r($linha);
+//     echo "</pre>";
+// }

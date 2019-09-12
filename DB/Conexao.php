@@ -7,7 +7,7 @@ class Conexao {
     private static $instance;
 
     // Dados de acesso MySQL
-    private static $connectURL = "mysql:dbname=loja;host=127.0.0.1";
+    private static $connectURL = "mysql:dbname=employees;host=127.0.0.1";
     private static $user = 'root';
     private static $password = '';
 
