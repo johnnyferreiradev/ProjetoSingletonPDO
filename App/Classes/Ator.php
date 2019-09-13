@@ -51,7 +51,8 @@
             return
                 "Primeiro nome: ".$this->primeiroNome.
                 "\nUltimo nome: ".$this->ultimoNome.
-                "\nUltima atualização: ".$this->ultimaAtualizacao;
+                "\nUltima atualização: ".$this->ultimaAtualizacao.
+                "\nId: ".$this->atorId;
         }
 
         public function save() {
@@ -72,7 +73,7 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE ator  set primeiro_nome = ?, ultimo_nome = ?, ultima_atualizacao = ? WHERE ator_id = ?";
+            $sql = "UPDATE ator set primeiro_nome = ?, ultimo_nome = ?, ultima_atualizacao = ? WHERE ator_id = ?";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, $this->ultimaAtualizacao, $this->atorId));
             Conexao::disconnect();

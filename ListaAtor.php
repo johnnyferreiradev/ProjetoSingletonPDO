@@ -22,10 +22,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lista de Atores</title>
+    <style>
+        table {
+            width: 100%;
+        }
+
+        table th {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>Lista de Atores cadastrados</h1>
-    <table style="width:100%">
+    <a href="FormAtor.php">Novo registro</a>
+    <table>
         <tr>
             <th>ID</th>
             <th>Primeiro Nome</th>
@@ -40,9 +50,9 @@
                 <td><?php echo $ator['ultimo_nome']?></td>
                 <td><?php echo $ator['ultima_atualizacao']?></td>
                 <td>
-                    <form action="ListaAtor.php" method="POST">
+                    <form action="FormAtor.php" method="POST">
                         <input type="hidden" name="ator_id" value="<?php echo $ator['ator_id']?>">
-                        <input type="hidden" name="acao" value="editar">
+                        <input type="hidden" name="acao" value="carregar_info">
                         <button type="submit">Editar</button>
                     </form>
 
