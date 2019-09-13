@@ -6,11 +6,19 @@
     $dados = Ator::listAll();
 
     if(!empty($_GET)) {
-        if($_GET['modo'] == 'excluir') {
+        if($_GET['acao'] == 'excluir') {
             $atorId = $_GET['ator_id'];
             $ator = new Ator();
             $ator->setAtorId($atorId);
-            $resultado = $ator->remove();
+            $encontrado = $ator->findById();
+
+            $resultado = null;
+            if ($encontrado) {
+                $resultado = $ator->remove();
+                header('location: ListaAtor.php');
+            } else {
+                echo "Usuário não encontrado!";
+            }
         }
     }
 ?>
@@ -65,7 +73,7 @@
         function confirmarExclusao(id) {
             let resposta = confirm('Tem certeza que deseja excluir?');
             if (resposta) {
-                window.location.href = `ListaAtor.php?ator_id=${id}&modo=excluir`;
+                window.location.href = `ListaAtor.php?ator_id=${id}&acao=excluir`;
             }
         }
     </script>

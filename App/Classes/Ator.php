@@ -47,6 +47,13 @@
         }
 
         // Other methods...
+        public function __construct($primeiroNome = null, $ultimoNome = null, $ultimaAtualizacao = null, $atorId = null) {
+            $this->primeiroNome = $primeiroNome;
+            $this->ultimoNome = $ultimoNome;
+            $this->ultimaAtualizacao = $ultimaAtualizacao;
+            $this->atorId = $atorId;
+        }
+
         public function __toString() {
             return
                 "Primeiro nome: ".$this->primeiroNome.

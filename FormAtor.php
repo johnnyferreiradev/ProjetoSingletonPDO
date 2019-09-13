@@ -10,10 +10,7 @@
         $ultimoNome = $_POST['ultimo_nome'];
         $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $ator = new Ator();
-        $ator->setPrimeiroNome($primeiroNome);
-        $ator->setUltimoNome($ultimoNome);
-        $ator->setUltimaAtualizacao($ultimaAtualizacao);
+        $ator = new Ator($primeiroNome, $ultimoNome, $ultimaAtualizacao);
 
         $resposta = $ator->save();
         if ($resposta) {
@@ -36,11 +33,7 @@
         $ultimoNome = $_POST['ultimo_nome'];
         $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $ator = new Ator();
-        $ator->setPrimeiroNome($primeiroNome);
-        $ator->setUltimoNome($ultimoNome);
-        $ator->setUltimaAtualizacao($ultimaAtualizacao);
-        $ator->setAtorId($atorId);
+        $ator = new Ator($primeiroNome, $ultimoNome, $ultimaAtualizacao, $atorId);
 
         $resposta = $ator->update();    
         if ($resposta) {
@@ -84,7 +77,7 @@
             value="<?php echo $atorSelecionado['ultima_atualizacao'] ? $atorSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
-            <input type="text" name="ator_id" value="<?php echo $atorSelecionado['ator_id']?>">
+            <input type="hidden" name="ator_id" value="<?php echo $atorSelecionado['ator_id']?>">
             <input type="hidden" name="acao" value="atualizar">
             <input type="submit" value="Atualizar">
 
