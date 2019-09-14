@@ -84,7 +84,9 @@
         public function remove() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "DELETE FROM pais WHERE pais_id = ?";
+            $sql = "SET FOREIGN_KEY_CHECKS = 0;";
+            $sql .= "DELETE FROM pais WHERE pais_id = ?";
+            $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array($this->paisId));
             Conexao::disconnect();

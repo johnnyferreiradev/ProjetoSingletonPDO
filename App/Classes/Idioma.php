@@ -5,69 +5,58 @@
     use DB\Conexao;
     use PDO;
 
-    class Ator {
+    class Idioma {
 
-        private $primeiroNome;
-        private $ultimoNome;
+        private $nome;
         private $ultimaAtualizacao;
-        private $atorId;
+        private $idiomaId;
 
         // Geters...
-        public function getPrimeiroNome() {
-            return $this->primeiroNome;
-        }
-
-        public function getUltimoNome() {
-            return $this->ultimoNome;
+        public function getNome() {
+            return $this->nome;
         }
 
         public function getUltimaAtualizacao() {
             return $this->ultimaAtualizacao;
         }
 
-        public function getAtorId() {
-            return $this->atorId;
+        public function getIdiomaId() {
+            return $this->idiomaId;
         }
 
         // Seters...
-        public function setPrimeiroNome($primeiroNome) {
-            $this->primeiroNome = $primeiroNome;
-        }
-
-        public function setUltimoNome($ultimoNome) {
-            $this->ultimoNome = $ultimoNome;
+        public function setNome($nome) {
+            $this->nome = $nome;
         }
 
         public function setUltimaAtualizacao($ultimaAtualizacao) {
             $this->ultimaAtualizacao = $ultimaAtualizacao;
         }
 
-        public function setAtorId($atorId) {
-            $this->atorId = $atorId;
+        public function setIdiomaId($idiomaId) {
+            $this->idiomaId = $idiomaId;
         }
 
         // Other methods...
-        public function __construct($primeiroNome = null, $ultimoNome = null, $ultimaAtualizacao = null, $atorId = null) {
-            $this->primeiroNome = $primeiroNome;
-            $this->ultimoNome = $ultimoNome;
+        public function __construct($nome = null, $ultimaAtualizacao = null, $idiomaId = null) {
+            $this->nome = $nome;
             $this->ultimaAtualizacao = $ultimaAtualizacao;
-            $this->atorId = $atorId;
+            $this->idiomaId = $idiomaId;
         }
 
         public function __toString() {
             return
-                "Primeiro nome: ".$this->primeiroNome.
-                "\nUltimo nome: ".$this->ultimoNome.
+                "nome: ".$this->nome.
                 "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId: ".$this->atorId;
+                "\nId: ".$this->idiomaId;
         }
 
         public function save() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO ator (primeiro_nome, ultimo_nome, ultima_atualizacao) VALUES(?,?,?)";
+            $sql = "INSERT INTO idioma (nome, ultima_atualizacao) VALUES(?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao));
             Conexao::disconnect();
 
             if ($result) {
@@ -80,9 +69,9 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE ator set primeiro_nome = ?, ultimo_nome = ?, ultima_atualizacao = ? WHERE ator_id = ?";
+            $sql = "UPDATE idioma set nome = ?, ultima_atualizacao = ? WHERE idioma_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, $this->ultimaAtualizacao, $this->atorId));
+            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao, $this->idiomaId));
             Conexao::disconnect();
 
             if ($result) {
@@ -96,10 +85,10 @@
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SET FOREIGN_KEY_CHECKS = 0;";
-            $sql .= "DELETE FROM ator where ator_id = ?";
+            $sql .= "DELETE FROM idioma WHERE idioma_id = ?";
             $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->atorId));
+            $result = $q->execute(array($this->idiomaId));
             Conexao::disconnect();
 
             if ($result) {
@@ -112,9 +101,9 @@
         public function findById() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM ator where ator_id = ?";
+            $sql = "SELECT * FROM idioma WHERE idioma_id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($this->atorId));
+            $q->execute(array($this->idiomaId));
             $data = $q->fetch(PDO::FETCH_ASSOC);
             Conexao::disconnect();
 
@@ -123,7 +112,7 @@
         
         public static function listAll() {
             $pdo = Conexao::getInstance();
-            $sql = 'SELECT * FROM ator ORDER BY ator_id DESC';
+            $sql = 'SELECT * FROM idioma ORDER BY idioma_id DESC';
             $q = $pdo->query($sql);
             $data = $q->fetchAll();
             Conexao::disconnect();
@@ -133,7 +122,7 @@
 
         public static function paginate($start, $end) {
             $pdo = Conexao::getInstance();
-            $sql = "SELECT * FROM ator ORDER BY ator_id DESC LIMIT $start, $end";
+            $sql = "SELECT * FROM idioma ORDER BY idioma_id DESC LIMIT $start, $end";
             $q = $pdo->query($sql);
             $data = $q->fetchAll();
             Conexao::disconnect();

@@ -37,15 +37,8 @@
 
             $resultado = null;
             if ($encontrado) {
-                $filmeAtor = new FilmeAtor($atorId);
-                $remocaoFilmeAtor = $filmeAtor->remove();
-
-                if ($remocaoFilmeAtor) {
-                    $resultado = $ator->remove();
-                    header("location: ListaAtor.php?acao=&pagina=$pagina");
-                } else {
-                    echo "Erro na remoção!";
-                }
+                $resultado = $ator->remove();
+                header("location: ListaAtor.php?acao=&pagina=$pagina");
             } else {
                 echo "Usuário não encontrado!";
             }
@@ -105,7 +98,7 @@
 
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {
-            let resposta = confirm('ATENÇÃO! Além do elemento selecionado, todos os registros associados a ele serão removidos.\nDeseja realmente excluir?');
+            let resposta = confirm('ATENÇÃO! Todos os dados do elemento selecionado serão removidos!\nDeseja realmente excluir?');
             if (resposta) {
                 window.location.href = `ListaAtor.php?ator_id=${id}&acao=excluir&pagina=${pagina}`;
             }

@@ -5,10 +5,10 @@
     use DB\Conexao;
     use PDO;
 
-    class FilmeAtor {
+    class FilmeCategoria {
 
         private $ultimaAtualizacao;
-        private $atorId;
+        private $categoriaId;
         private $filmeId;
 
         // Geters...
@@ -16,8 +16,8 @@
             return $this->ultimaAtualizacao;
         }
 
-        public function getAtorId() {
-            return $this->atorId;
+        public function getCategoriaId() {
+            return $this->categoriaId;
         }
 
         public function getFilmeId() {
@@ -29,8 +29,8 @@
             $this->ultimaAtualizacao = $ultimaAtualizacao;
         }
 
-        public function setAtorId($atorId) {
-            $this->atorId = $atorId;
+        public function setCategoriaId($categoriaId) {
+            $this->categoriaId = $categoriaId;
         }
 
         public function setFilmeId($filmeId) {
@@ -38,25 +38,25 @@
         }
 
         // Other methods...
-        public function __construct($atorId = null, $filmeId = null, $ultimaAtualizacao = null) {
+        public function __construct($categoriaId = null, $filmeId = null, $ultimaAtualizacao = null) {
             $this->ultimaAtualizacao = $ultimaAtualizacao;
-            $this->atorId = $atorId;
+            $this->categoriaId = $categoriaId;
             $this->filmeId = $filmeId;
         }
 
         public function __toString() {
             return
                 "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId do ator: ".$this->atorId.
+                "\nId da categoria: ".$this->categoriaId.
                 "\nId do filme: ".$this->filmeId;
         }
 
         public function save() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO filme_ator (ator_id, filme_id, ultima_atualizacao) VALUES(?,?,?)";
+            $sql = "INSERT INTO filme_categoria (filme_id, categoria_id, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->atorId, $this->filmeId, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->filmeId, $this->categoriaId, $this->ultimaAtualizacao));
             Conexao::disconnect();
 
             if ($result) {
@@ -70,10 +70,10 @@
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SET FOREIGN_KEY_CHECKS = 0;";
-            $sql .= "DELETE FROM filme_ator WHERE ator_id = ? OR filme_id = ?";
+            $sql .= "DELETE FROM filme_categoria WHERE categoria_id = ? OR filme_id = ?";
             $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->atorId, $this->filmeId));
+            $result = $q->execute(array($this->categoriaId, $this->filmeId));
             Conexao::disconnect();
 
             if ($result) {
