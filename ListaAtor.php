@@ -2,6 +2,7 @@
     require __DIR__.'/App/autoload.php';
 
     use App\Classes\Ator;
+    use App\Classes\FilmeAtor;
 
     // Lógica da paginação
     $dados = Ator::listAll();
@@ -36,8 +37,15 @@
 
             $resultado = null;
             if ($encontrado) {
-                $resultado = $ator->remove();
-                header("location: ListaAtor.php?pagina=$pagina");
+                $filmeAtor = new FilmeAtor($atorId);
+                $remocaoFilmeAtor = $filmeAtor->remove();
+
+                if ($remocaoFilmeAtor) {
+                    $resultado = $ator->remove();
+                    header("location: ListaAtor.php?acao=&pagina=$pagina");
+                } else {
+                    echo "Erro na remoção!";
+                }
             } else {
                 echo "Usuário não encontrado!";
             }
@@ -63,10 +71,10 @@
     </style>
 </head>
 <body>
-    <h1>Lista de Atores cadastrados</h1>
-    <a href="FormAtor.php">Novo registro</a>
-    <table>
-        <tr>
+    <h1 class="list-title">Lista de Atores cadastrados</h1>
+    <a class="btn-new" href="FormAtor.php">Novo registro</a>
+    <table class="list-table">
+        <tr class="row-titles">
             <th>ID</th>
             <th>Primeiro Nome</th>
             <th>Ultimo Nome</th>
@@ -74,7 +82,7 @@
             <th>Ações</th>
         </tr>
         <?php foreach($dadosPaginados as $ator) { ?>
-            <tr>
+            <tr class="row-results">
                 <td><?php echo $ator['ator_id']?></td>
                 <td><?php echo $ator['primeiro_nome']?></td>
                 <td><?php echo $ator['ultimo_nome']?></td>
@@ -83,21 +91,21 @@
                     <form action="FormAtor.php" method="POST">
                         <input type="hidden" name="ator_id" value="<?php echo $ator['ator_id']?>">
                         <input type="hidden" name="acao" value="carregar_info">
-                        <button type="submit">Editar</button>
+                        <button type="submit" class="btn-edit">Editar</button>
                     </form>
 
-                    <button onclick="confirmarExclusao(<?php echo $ator['ator_id']; ?>, <?php echo $pagina; ?>)">Excluir</button>
+                    <button onclick="confirmarExclusao(<?php echo $ator['ator_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
                 </td>
             </tr>
         <?php } ?>
     </table>
 
-    <a href="ListaAtor.php?acao=previus&pagina=<?php echo $anterior; ?>">Anterior</a>
-    <a href="ListaAtor.php?acao=next&pagina=<?php echo $proxima; ?>">Proxima</a>
+    <a href="ListaAtor.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
+    <a href="ListaAtor.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
 
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {
-            let resposta = confirm('Tem certeza que deseja excluir?');
+            let resposta = confirm('ATENÇÃO! Além do elemento selecionado, todos os registros associados a ele serão removidos.\nDeseja realmente excluir?');
             if (resposta) {
                 window.location.href = `ListaAtor.php?ator_id=${id}&acao=excluir&pagina=${pagina}`;
             }
