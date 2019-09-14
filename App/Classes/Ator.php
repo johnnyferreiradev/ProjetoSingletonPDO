@@ -128,4 +128,14 @@
 
             return $data;
         }
+
+        public static function paginate($start, $end) {
+            $pdo = Conexao::getInstance();
+            $sql = "SELECT * FROM ator ORDER BY ator_id DESC LIMIT $start, $end";
+            $q = $pdo->query($sql);
+            $data = $q->fetchAll();
+            Conexao::disconnect();
+
+            return $data;
+        }
     }
