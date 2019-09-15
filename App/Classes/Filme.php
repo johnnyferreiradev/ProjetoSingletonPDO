@@ -48,7 +48,7 @@
         }
 
         // Other methods...
-        public function __construct($titulo = null, $descricao = null, $anoLancamento = null, $idiomaId = null, $idiomaOriginalId = null, $duracaoLocacao = null, $precoLocacao = null, $duracaoFilme = null, $custoSubstituicao = null, $classificacao = null, $recursosEspeciais = null, $ultimaAtualizacao = null, $filmeId = null,) {
+        public function __construct($titulo = null, $descricao = null, $anoLancamento = null, $idiomaId = null, $idiomaOriginalId = null, $duracaoLocacao = null, $precoLocacao = null, $duracaoFilme = null, $custoSubstituicao = null, $classificacao = null, $recursosEspeciais = null, $ultimaAtualizacao = null, $filmeId = null) {
             $this->titulo = $titulo;
             $this->descricao = $descricao;
             $this->anoLancamento = $anoLancamento;

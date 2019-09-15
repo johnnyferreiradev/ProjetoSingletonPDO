@@ -12,7 +12,9 @@
 </head>
 <body>
     <h1>Sistema da Locadora!</h1>
-    <a href="ListaAtor.php?acao=&pagina=1">Atores</a>
+    <a href="ListaAtor.php?acao=&pagina=1">Atores</a><br>
+    <a href="ListaFilme.php?acao=&pagina=1">Filmes</a><br>
+    <a href="ListaIdioma.php?acao=&pagina=1">Idiomas</a><br>
     <a href="ListaPais.php">Países</a>
 </body>
 </html>
