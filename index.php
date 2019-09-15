@@ -15,6 +15,7 @@
     <a href="ListaAtor.php?acao=&pagina=1">Atores</a><br>
     <a href="ListaFilme.php?acao=&pagina=1">Filmes</a><br>
     <a href="ListaIdioma.php?acao=&pagina=1">Idiomas</a><br>
+    <a href="ListaCategoria.php?acao=&pagina=1">Categorias</a><br>
     <a href="ListaPais.php">Países</a>
 </body>
 </html>
