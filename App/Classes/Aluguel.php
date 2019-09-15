@@ -5,17 +5,22 @@
     use DB\Conexao;
     use PDO;
 
-    class Pagamento {
+    class Aluguel {
 
+        private $dataAluguel;
+        private $inventarioId;
         private $clienteId;
+        private $dataDevolucao;
         private $funcionarioId;
-        private $aluguelId;
-        private $valor;
-        private $dataPagamento;
         private $ultimaAtualizacao;
-        private $pagamentoId;
+        private $aluguelId;
 
         // Geters...
+        
+        public function getInventarioId() {
+            return $this->inventarioId;
+        }
+
         public function getClienteId() {
             return $this->clienteId;
         }
@@ -28,11 +33,11 @@
             return $this->aluguelId;
         }
 
-        public function getPagamentoId() {
-            return $this->pagamentoId;
+        // Seters...
+        public function setInventarioId($inventarioId) {
+            $this->inventarioId = $inventarioId;
         }
 
-        // Seters...
         public function setClienteId($clienteId) {
             $this->clienteId = $clienteId;
         }
@@ -45,27 +50,38 @@
             $this->aluguelId = $aluguelId;
         }
 
-        public function setPagamentoId($pagamentoId) {
-            $this->pagamentoId = $pagamentoId;
-        }
-
         // Other methods...
-        public function __construct($clienteId = null, $funcionarioId = null, $aluguelId = null, $valor =null, $dataPagamento = null, $ultimaAtualizacao = null, $pagamentoId = null) {
+        public function __construct($dataAluguel = null, $inventarioId = null, $clienteId = null, $dataDevolucao = null, $funcionarioId = null, $ultimaAtualizacao = null, $aluguelId = null) {
+            $this->dataAluguel = $dataAluguel;
+            $this->inventarioId = $inventarioId;
             $this->clienteId = $clienteId;
+            $this->dataDevolucao = $dataDevolucao;
             $this->funcionarioId = $funcionarioId;
-            $this->aluguelId = $aluguelId;
-            $this->valor = $valor;
-            $this->dataPagamento = $dataPagamento;
             $this->ultimaAtualizacao = $ultimaAtualizacao;
-            $this->pagamentoId = $pagamentoId;
+            $this->aluguelId = $aluguelId;
         }
 
         public function save() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO pagamento (clienteId, funcionario_id, aluguel_id, valor, data_de_pagamento, ultima_atualizacao) VALUES(?,?,?,?,?,?)";
+            $sql =  "INSERT INTO aluguel (
+                        data_de_aluguel,
+                        inventario_id,
+                        cliente_id,
+                        data_de_devolucao,
+                        funcionario_id,
+                        ultima_atualizacao
+                    )
+                    VALUES(?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao));
+            $result = $q->execute(array(
+                        $this->dataAluguel,
+                        $this->inventarioId,
+                        $this->clienteId,
+                        $this->dataDevolucao,
+                        $this->funcionarioId,
+                        $this->ultimaAtualizacao
+                    ));
             Conexao::disconnect();
 
             if ($result) {
@@ -78,10 +94,18 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql =  "UPDATE pagamento set clienteId = ?, funcionario_id = ?, aluguel_id = ?, valor = ?, data_de_pagamento = ?, ultima_atualizacao = ? 
-                    WHERE pagamento_id = ?";
+            $sql =  "UPDATE aluguel set data_de_aluguel = ?, inventario_id = ?, cliente_id = ?, data_de_devolucao = ?, funcionario_id = ?, ultima_atualizacao = ? 
+                    WHERE aluguel_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao, $this->pagamentoId));
+            $result = $q->execute(array(
+                        $this->dataAluguel,
+                        $this->inventarioId,
+                        $this->clienteId,
+                        $this->dataDevolucao,
+                        $this->funcionarioId,
+                        $this->ultimaAtualizacao,
+                        $this->aluguelId
+                    ));
             Conexao::disconnect();
 
             if ($result) {
@@ -95,10 +119,10 @@
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "SET FOREIGN_KEY_CHECKS = 0;";
-            $sql .= "DELETE FROM pagamento WHERE pagamento_id = ?";
+            $sql .= "DELETE FROM aluguel WHERE aluguel_id = ?";
             $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->pagamentoId));
+            $result = $q->execute(array($this->aluguelId));
             Conexao::disconnect();
 
             if ($result) {
@@ -111,9 +135,9 @@
         public function findById() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT * FROM pagamento WHERE pagamento_id = ?";
+            $sql = "SELECT * FROM aluguel WHERE aluguel_id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($this->pagamentoId));
+            $q->execute(array($this->aluguelId));
             $data = $q->fetch(PDO::FETCH_ASSOC);
             Conexao::disconnect();
 
@@ -122,7 +146,7 @@
         
         public static function listAll() {
             $pdo = Conexao::getInstance();
-            $sql = 'SELECT * FROM pagamento ORDER BY pagamento_id DESC';
+            $sql = 'SELECT * FROM aluguel ORDER BY aluguel_id DESC';
             $q = $pdo->query($sql);
             $data = $q->fetchAll();
             Conexao::disconnect();
@@ -132,7 +156,7 @@
 
         public static function paginate($start, $end) {
             $pdo = Conexao::getInstance();
-            $sql = "SELECT * FROM pagamento ORDER BY pagamento_id DESC LIMIT $start, $end";
+            $sql = "SELECT * FROM aluguel ORDER BY aluguel_id DESC LIMIT $start, $end";
             $q = $pdo->query($sql);
             $data = $q->fetchAll();
             Conexao::disconnect();
