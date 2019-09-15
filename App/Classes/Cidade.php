@@ -72,7 +72,9 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE cidade set cidade = ?, pais_id = ?, ultima_atualizacao = ? WHERE cidade_id = ?";
+            $sql = "SET FOREIGN_KEY_CHECKS = 0;";
+            $sql .= "UPDATE cidade set cidade = ?, pais_id = ?, ultima_atualizacao = ? WHERE cidade_id = ?";
+            $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array($this->cidade, $this->paisId, $this->ultimaAtualizacao, $this->cidadeId));
             Conexao::disconnect();
