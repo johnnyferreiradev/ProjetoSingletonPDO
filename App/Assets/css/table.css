@@ -1,0 +1,72 @@
+.container-table {
+    padding: 40px;
+    color: #222;
+}
+
+.list-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.list-table {
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 4px 8px #0002;
+    margin-top: 20px;
+}
+
+.list-table th, .list-table td {
+    padding-bottom: 10px;
+}
+
+.list-table .row-results {
+    color: #444;
+}
+
+.btn-edit {
+    width: 60px;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: rgb(120, 162, 224);
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-edit:hover {
+    background-color: rgb(41, 113, 223);
+}
+
+td form {
+    display: inline-block;
+}
+
+.btn-remove {
+    display: inline-block;
+    width: 60px;
+    padding: 8px;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    background-color: rgb(224, 120, 120);
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-remove:hover {
+    background-color: rgb(221, 68, 68);
+}
+
+.btn-new {
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
