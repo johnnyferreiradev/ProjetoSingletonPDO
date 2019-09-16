@@ -18,7 +18,6 @@
         private $custoSubstituicao;
         private $classificacao;
         private $recursosEspeciais;
-        private $ultimaAtualizacao;
         private $filmeId;
 
         // Geters...
@@ -48,7 +47,7 @@
         }
 
         // Other methods...
-        public function __construct($titulo = null, $descricao = null, $anoLancamento = null, $idiomaId = null, $idiomaOriginalId = null, $duracaoLocacao = null, $precoLocacao = null, $duracaoFilme = null, $custoSubstituicao = null, $classificacao = null, $recursosEspeciais = null, $ultimaAtualizacao = null, $filmeId = null) {
+        public function __construct($titulo = null, $descricao = null, $anoLancamento = null, $idiomaId = null, $idiomaOriginalId = null, $duracaoLocacao = null, $precoLocacao = null, $duracaoFilme = null, $custoSubstituicao = null, $classificacao = null, $recursosEspeciais = null, $filmeId = null) {
             $this->titulo = $titulo;
             $this->descricao = $descricao;
             $this->anoLancamento = $anoLancamento;
@@ -60,7 +59,6 @@
             $this->custoSubstituicao = $custoSubstituicao;
             $this->classificacao = $classificacao;
             $this->recursosEspeciais = $recursosEspeciais;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->filmeId = $filmeId;
         }
 
@@ -82,7 +80,7 @@
                     $this->custoSubstituicao,
                     $this->classificacao,
                     $this->recursosEspeciais,
-                    $this->ultimaAtualizacao
+                    date('Y-m-d H:i:s')
                 ));
             Conexao::disconnect();
 
@@ -111,7 +109,7 @@
                 $this->custoSubstituicao,
                 $this->classificacao,
                 $this->recursosEspeciais,
-                $this->ultimaAtualizacao,
+                date('Y-m-d H:i:s'),
                 $this->filmeId
             ));
             Conexao::disconnect();

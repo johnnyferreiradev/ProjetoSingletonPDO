@@ -7,15 +7,10 @@
 
     class FilmeAtor {
 
-        private $ultimaAtualizacao;
         private $atorId;
         private $filmeId;
 
-        // Geters...
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
-        }
-
+        // Geters..
         public function getAtorId() {
             return $this->atorId;
         }
@@ -25,10 +20,6 @@
         }
 
         // Seters...
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setAtorId($atorId) {
             $this->atorId = $atorId;
         }
@@ -38,8 +29,7 @@
         }
 
         // Other methods...
-        public function __construct($atorId = null, $filmeId = null, $ultimaAtualizacao = null) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
+        public function __construct($atorId = null, $filmeId = null) {
             $this->atorId = $atorId;
             $this->filmeId = $filmeId;
         }
@@ -56,7 +46,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO filme_ator (ator_id, filme_id, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->atorId, $this->filmeId, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->atorId, $this->filmeId, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {

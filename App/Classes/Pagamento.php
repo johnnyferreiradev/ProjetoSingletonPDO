@@ -12,7 +12,6 @@
         private $aluguelId;
         private $valor;
         private $dataPagamento;
-        private $ultimaAtualizacao;
         private $pagamentoId;
 
         // Geters...
@@ -50,13 +49,12 @@
         }
 
         // Other methods...
-        public function __construct($clienteId = null, $funcionarioId = null, $aluguelId = null, $valor =null, $dataPagamento = null, $ultimaAtualizacao = null, $pagamentoId = null) {
+        public function __construct($clienteId = null, $funcionarioId = null, $aluguelId = null, $valor =null, $dataPagamento = null, $pagamentoId = null) {
             $this->clienteId = $clienteId;
             $this->funcionarioId = $funcionarioId;
             $this->aluguelId = $aluguelId;
             $this->valor = $valor;
             $this->dataPagamento = $dataPagamento;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->pagamentoId = $pagamentoId;
         }
 
@@ -65,7 +63,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO pagamento (cliente_id, funcionario_id, aluguel_id, valor, data_de_pagamento, ultima_atualizacao) VALUES(?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -81,7 +79,7 @@
             $sql =  "UPDATE pagamento set cliente_id = ?, funcionario_id = ?, aluguel_id = ?, valor = ?, data_de_pagamento = ?, ultima_atualizacao = ? 
                     WHERE pagamento_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao, $this->pagamentoId));
+            $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, date('Y-m-d H:i:s'), $this->pagamentoId));
             Conexao::disconnect();
 
             if ($result) {

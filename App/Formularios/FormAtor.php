@@ -10,9 +10,8 @@
     if (!empty($_POST) && $_POST['acao'] == 'salvar') {
         $primeiroNome = $_POST['primeiro_nome'];
         $ultimoNome = $_POST['ultimo_nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $ator = new Ator($primeiroNome, $ultimoNome, $ultimaAtualizacao);
+        $ator = new Ator($primeiroNome, $ultimoNome);
 
         $resposta = $ator->save();
         if ($resposta) {
@@ -33,9 +32,8 @@
         $atorId = $_POST['ator_id'];
         $primeiroNome = $_POST['primeiro_nome'];
         $ultimoNome = $_POST['ultimo_nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $ator = new Ator($primeiroNome, $ultimoNome, $ultimaAtualizacao, $atorId);
+        $ator = new Ator($primeiroNome, $ultimoNome, $atorId);
 
         $resposta = $ator->update();    
         if ($resposta) {
@@ -70,13 +68,6 @@
             type="text"
             name="ultimo_nome"
             value="<?php echo $atorSelecionado['ultimo_nome'] ? $atorSelecionado['ultimo_nome'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $atorSelecionado['ultima_atualizacao'] ? $atorSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="ator_id" value="<?php echo $atorSelecionado['ator_id']?>">

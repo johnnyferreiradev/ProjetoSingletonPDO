@@ -9,7 +9,6 @@
 
         private $paisId;
         private $cidade;
-        private $ultimaAtualizacao;
         private $cidadeId;
 
         // Geters...
@@ -19,10 +18,6 @@
 
         public function getCidade() {
             return $this->cidade;
-        }
-
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
         }
 
         public function getCidadeId() {
@@ -38,19 +33,14 @@
             $this->cidade = $cidade;
         }
 
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setCidadeId($cidadeId) {
             $this->cidadeId = $cidadeId;
         }
 
         // Other methods...
-        public function __construct($paisId = null, $cidade = null, $ultimaAtualizacao = null, $cidadeId = null) {
+        public function __construct($paisId = null, $cidade = null, $cidadeId = null) {
             $this->paisId = $paisId;
             $this->cidade = $cidade;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->cidadeId = $cidadeId;
         }
 
@@ -59,7 +49,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO cidade (cidade, pais_id, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->cidade, $this->paisId, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->cidade, $this->paisId, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -76,7 +66,7 @@
             $sql .= "UPDATE cidade set cidade = ?, pais_id = ?, ultima_atualizacao = ? WHERE cidade_id = ?";
             $sql .= ";SET FOREIGN_KEY_CHECKS = 1;";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->cidade, $this->paisId, $this->ultimaAtualizacao, $this->cidadeId));
+            $result = $q->execute(array($this->cidade, $this->paisId, date('Y-m-d H:i:s'), $this->cidadeId));
             Conexao::disconnect();
 
             if ($result) {

@@ -23,9 +23,8 @@
         $custoSubstituicao = $_POST['custo_de_substituicao'];
         $classificacao = $_POST['classificacao'];
         $recursosEspeciais = $_POST['recursos_especiais'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $filme = new Filme($titulo, $descricao, $anoLancamento, $idiomaId, $idiomaOriginalId, $duracaoLocacao, $precoLocacao, $duracaoFilme, $custoSubstituicao, $classificacao, $recursosEspeciais, $ultimaAtualizacao);
+        $filme = new Filme($titulo, $descricao, $anoLancamento, $idiomaId, $idiomaOriginalId, $duracaoLocacao, $precoLocacao, $duracaoFilme, $custoSubstituicao, $classificacao, $recursosEspeciais);
 
         $resposta = $filme->save();
         if ($resposta) {
@@ -55,9 +54,8 @@
         $custoSubstituicao = $_POST['custo_de_substituicao'];
         $classificacao = $_POST['classificacao'];
         $recursosEspeciais = $_POST['recursos_especiais'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $filme = new Filme($titulo, $descricao, $anoLancamento, $idiomaId, $idiomaOriginalId, $duracaoLocacao, $precoLocacao, $duracaoFilme, $custoSubstituicao, $classificacao, $recursosEspeciais, $ultimaAtualizacao, $filmeId);
+        $filme = new Filme($titulo, $descricao, $anoLancamento, $idiomaId, $idiomaOriginalId, $duracaoLocacao, $precoLocacao, $duracaoFilme, $custoSubstituicao, $classificacao, $recursosEspeciais, $filmeId);
 
         $resposta = $filme->update();    
         if ($resposta) {
@@ -158,13 +156,6 @@
             type="text"
             name="recursos_especiais"
             value="<?php echo $filmeSelecionado['recursos_especiais'] ? $filmeSelecionado['recursos_especiais'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $filmeSelecionado['ultima_atualizacao'] ? $filmeSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="filme_id" value="<?php echo $filmeSelecionado['filme_id']?>">

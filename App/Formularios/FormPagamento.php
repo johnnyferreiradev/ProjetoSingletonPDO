@@ -25,9 +25,8 @@
         $aluguelId = $_POST['aluguel_id'];
         $valor = $_POST['valor'];
         $dataPagamento = $_POST['data_de_pagamento'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $pagamento = new Pagamento($clienteId, $funcionarioId, $aluguelId, $valor, $dataPagamento, $ultimaAtualizacao);
+        $pagamento = new Pagamento($clienteId, $funcionarioId, $aluguelId, $valor, $dataPagamento);
 
         $resposta = $pagamento->save();
         if ($resposta) {
@@ -51,9 +50,8 @@
         $aluguelId = $_POST['aluguel_id'];
         $valor = $_POST['valor'];
         $dataPagamento = $_POST['data_de_pagamento'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $pagamento = new Pagamento($clienteId, $funcionarioId, $aluguelId, $valor, $dataPagamento, $ultimaAtualizacao, $pagamentoId);
+        $pagamento = new Pagamento($clienteId, $funcionarioId, $aluguelId, $valor, $dataPagamento, $pagamentoId);
 
         $resposta = $pagamento->update();    
         if ($resposta) {
@@ -115,13 +113,6 @@
             type="text"
             name="data_de_pagamento"
             value="<?php echo $pagamentoSelecionado['data_de_pagamento'] ? $pagamentoSelecionado['data_de_pagamento'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $pagamentoSelecionado['ultima_atualizacao'] ? $pagamentoSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="pagamento_id" value="<?php echo $pagamentoSelecionado['pagamento_id']?>">

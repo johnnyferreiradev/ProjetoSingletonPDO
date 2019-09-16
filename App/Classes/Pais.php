@@ -8,16 +8,11 @@
     class Pais {
 
         private $pais;
-        private $ultimaAtualizacao;
         private $paisId;
 
         // Geters...
         public function getPais() {
             return $this->pais;
-        }
-
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
         }
 
         public function getPaisId() {
@@ -29,26 +24,14 @@
             $this->pais = $pais;
         }
 
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setPaisId($paisId) {
             $this->paisId = $paisId;
         }
 
         // Other methods...
-        public function __construct($pais = null, $ultimaAtualizacao = null, $paisId = null) {
+        public function __construct($pais = null, $paisId = null) {
             $this->pais = $pais;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->paisId = $paisId;
-        }
-
-        public function __toString() {
-            return
-                "Pais: ".$this->pais.
-                "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId: ".$this->paisId;
         }
 
         public function save() {
@@ -56,7 +39,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO pais (pais, ultima_atualizacao) VALUES(?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->pais, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->pais, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -71,7 +54,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE pais set pais = ?, ultima_atualizacao = ? WHERE pais_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->pais, $this->ultimaAtualizacao, $this->paisId));
+            $result = $q->execute(array($this->pais, date('Y-m-d H:i:s'), $this->paisId));
             Conexao::disconnect();
 
             if ($result) {

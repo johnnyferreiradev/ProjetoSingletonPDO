@@ -14,7 +14,6 @@
         private $enderecoId;
         private $ativo;
         private $dataCriacao;
-        private $ultimaAtualizacao;
         private $clienteId;
 
         // Geters...
@@ -45,7 +44,7 @@
         }
 
         // Other methods...
-        public function __construct($lojaId = null, $primeiroNome = null, $ultimoNome = null, $email = null, $enderecoId = null, $ativo = null, $dataCriacao = null, $ultimaAtualizacao = null, $clienteId = null) {
+        public function __construct($lojaId = null, $primeiroNome = null, $ultimoNome = null, $email = null, $enderecoId = null, $ativo = null, $dataCriacao = null, $clienteId = null) {
             $this->lojaId = $lojaId;
             $this->primeiroNome = $primeiroNome;
             $this->ultimoNome = $ultimoNome;
@@ -53,7 +52,6 @@
             $this->enderecoId = $enderecoId;
             $this->ativo = $ativo;
             $this->dataCriacao = $dataCriacao;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->clienteId = $clienteId;
         }
 
@@ -71,7 +69,7 @@
                     $this->enderecoId,
                     $this->ativo,
                     $this->dataCriacao,
-                    $this->ultimaAtualizacao
+                    date('Y-m-d H:i:s')
                 ));
             Conexao::disconnect();
 
@@ -96,7 +94,7 @@
                 $this->enderecoId,
                 $this->ativo,
                 $this->dataCriacao,
-                $this->ultimaAtualizacao,
+                date('Y-m-d H:i:s'),
                 $this->clienteId
             ));
             Conexao::disconnect();

@@ -33,7 +33,7 @@
         if($_GET['acao'] == 'excluir') {
             $cidadeId = $_GET['cidade_id'];
             $cidade = new Cidade();
-            $cidade->setAtorId($cidadeId);
+            $cidade->setCidadeId($cidadeId);
             $encontrado = $cidade->findById();
 
             $resultado = null;

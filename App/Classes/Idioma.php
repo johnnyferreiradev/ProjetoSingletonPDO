@@ -8,16 +8,11 @@
     class Idioma {
 
         private $nome;
-        private $ultimaAtualizacao;
         private $idiomaId;
 
         // Geters...
         public function getNome() {
             return $this->nome;
-        }
-
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
         }
 
         public function getIdiomaId() {
@@ -29,26 +24,14 @@
             $this->nome = $nome;
         }
 
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setIdiomaId($idiomaId) {
             $this->idiomaId = $idiomaId;
         }
 
         // Other methods...
-        public function __construct($nome = null, $ultimaAtualizacao = null, $idiomaId = null) {
+        public function __construct($nome = null, $idiomaId = null) {
             $this->nome = $nome;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->idiomaId = $idiomaId;
-        }
-
-        public function __toString() {
-            return
-                "nome: ".$this->nome.
-                "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId: ".$this->idiomaId;
         }
 
         public function save() {
@@ -56,7 +39,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO idioma (nome, ultima_atualizacao) VALUES(?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->nome, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -71,7 +54,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE idioma set nome = ?, ultima_atualizacao = ? WHERE idioma_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao, $this->idiomaId));
+            $result = $q->execute(array($this->nome, date('Y-m-d H:i:s'), $this->idiomaId));
             Conexao::disconnect();
 
             if ($result) {

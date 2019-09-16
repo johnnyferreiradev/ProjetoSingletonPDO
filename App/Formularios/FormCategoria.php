@@ -9,9 +9,8 @@
 
     if (!empty($_POST) && $_POST['acao'] == 'salvar') {
         $nome = $_POST['nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $categoria = new Categoria($nome, $ultimaAtualizacao);
+        $categoria = new Categoria($nome);
 
         $resposta = $categoria->save();
         if ($resposta) {
@@ -31,9 +30,8 @@
     if (!empty($_POST) && $_POST['acao'] == 'atualizar') {
         $categoriaId = $_POST['categoria_id'];
         $nome = $_POST['nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $categoria = new Categoria($nome, $ultimaAtualizacao, $categoriaId);
+        $categoria = new Categoria($nome, $categoriaId);
 
         $resposta = $categoria->update();    
         if ($resposta) {
@@ -61,13 +59,6 @@
             type="text"
             name="nome"
             value="<?php echo $categoriaSelecionado['nome'] ? $categoriaSelecionado['nome'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $categoriaSelecionado['ultima_atualizacao'] ? $categoriaSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="categoria_id" value="<?php echo $categoriaSelecionado['categoria_id']?>">

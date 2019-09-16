@@ -25,9 +25,8 @@
         $clienteId = $_POST['cliente_id'];
         $dataDevolucao = $_POST['data_de_devolucao'];
         $funcionarioId = $_POST['funcionario_id'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $aluguel = new Aluguel($dataAluguel, $inventarioId, $clienteId, $dataDevolucao, $funcionarioId, $ultimaAtualizacao);
+        $aluguel = new Aluguel($dataAluguel, $inventarioId, $clienteId, $dataDevolucao, $funcionarioId);
 
         $resposta = $aluguel->save();
         if ($resposta) {
@@ -51,9 +50,8 @@
         $clienteId = $_POST['cliente_id'];
         $dataDevolucao = $_POST['data_de_devolucao'];
         $funcionarioId = $_POST['funcionario_id'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $aluguel = new Aluguel($dataAluguel, $inventarioId, $clienteId, $dataDevolucao, $funcionarioId, $ultimaAtualizacao, $aluguelId);
+        $aluguel = new Aluguel($dataAluguel, $inventarioId, $clienteId, $dataDevolucao, $funcionarioId, $aluguelId);
 
         $resposta = $aluguel->update();    
         if ($resposta) {
@@ -115,13 +113,6 @@
                 <option value="<?php echo $funcionario['funcionario_id']?>"><?php echo $funcionario['funcionario_id']." - ".$funcionario['primeiro_nome']." ".$funcionario['ultimo_nome']; ?></option>
             <?php } ?>
         </select>
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $aluguelSelecionado['ultima_atualizacao'] ? $aluguelSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="aluguel_id" value="<?php echo $aluguelSelecionado['aluguel_id']?>">

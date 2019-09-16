@@ -7,15 +7,11 @@
 
     class Loja {
 
-        private $ultimaAtualizacao;
         private $enderecoId;
         private $gerenteId;
         private $lojaId;
 
         // Geters...
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
-        }
 
         public function getEnderecoId() {
             return $this->enderecoId;
@@ -30,9 +26,6 @@
         }
 
         // Seters...
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
 
         public function setEnderecoId($enderecoId) {
             $this->enderecoId = $enderecoId;
@@ -47,8 +40,7 @@
         }
 
         // Other methods...
-        public function __construct($enderecoId = null, $gerenteId = null, $lojaId = null, $ultimaAtualizacao = null) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
+        public function __construct($enderecoId = null, $gerenteId = null, $lojaId = null) {
             $this->enderecoId = $enderecoId;
             $this->gerenteId = $gerenteId;
             $this->lojaId = $lojaId;
@@ -59,7 +51,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO loja (gerente_id, endereco_id, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->gerenteId, $this->enderecoId, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->gerenteId, $this->enderecoId, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {

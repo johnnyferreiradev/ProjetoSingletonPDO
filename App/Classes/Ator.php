@@ -9,7 +9,6 @@
 
         private $primeiroNome;
         private $ultimoNome;
-        private $ultimaAtualizacao;
         private $atorId;
 
         // Geters...
@@ -19,10 +18,6 @@
 
         public function getUltimoNome() {
             return $this->ultimoNome;
-        }
-
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
         }
 
         public function getAtorId() {
@@ -38,19 +33,14 @@
             $this->ultimoNome = $ultimoNome;
         }
 
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setAtorId($atorId) {
             $this->atorId = $atorId;
         }
 
         // Other methods...
-        public function __construct($primeiroNome = null, $ultimoNome = null, $ultimaAtualizacao = null, $atorId = null) {
+        public function __construct($primeiroNome = null, $ultimoNome = null, $atorId = null) {
             $this->primeiroNome = $primeiroNome;
             $this->ultimoNome = $ultimoNome;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->atorId = $atorId;
         }
 
@@ -67,7 +57,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO ator (primeiro_nome, ultimo_nome, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -82,7 +72,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE ator set primeiro_nome = ?, ultimo_nome = ?, ultima_atualizacao = ? WHERE ator_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, $this->ultimaAtualizacao, $this->atorId));
+            $result = $q->execute(array($this->primeiroNome, $this->ultimoNome, date('Y-m-d H:i:s'), $this->atorId));
             Conexao::disconnect();
 
             if ($result) {

@@ -7,14 +7,10 @@
 
     class FilmeCategoria {
 
-        private $ultimaAtualizacao;
         private $categoriaId;
         private $filmeId;
 
         // Geters...
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
-        }
 
         public function getCategoriaId() {
             return $this->categoriaId;
@@ -25,9 +21,6 @@
         }
 
         // Seters...
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
 
         public function setCategoriaId($categoriaId) {
             $this->categoriaId = $categoriaId;
@@ -38,17 +31,9 @@
         }
 
         // Other methods...
-        public function __construct($categoriaId = null, $filmeId = null, $ultimaAtualizacao = null) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
+        public function __construct($categoriaId = null, $filmeId = null) {
             $this->categoriaId = $categoriaId;
             $this->filmeId = $filmeId;
-        }
-
-        public function __toString() {
-            return
-                "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId da categoria: ".$this->categoriaId.
-                "\nId do filme: ".$this->filmeId;
         }
 
         public function save() {
@@ -56,7 +41,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO filme_categoria (filme_id, categoria_id, ultima_atualizacao) VALUES(?,?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->filmeId, $this->categoriaId, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->filmeId, $this->categoriaId, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {

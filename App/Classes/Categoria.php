@@ -8,16 +8,11 @@
     class Categoria {
 
         private $nome;
-        private $ultimaAtualizacao;
         private $categoriaId;
 
         // Geters...
         public function getNome() {
             return $this->nome;
-        }
-
-        public function getUltimaAtualizacao() {
-            return $this->ultimaAtualizacao;
         }
 
         public function getCategoriaId() {
@@ -29,26 +24,14 @@
             $this->nome = $nome;
         }
 
-        public function setUltimaAtualizacao($ultimaAtualizacao) {
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
-        }
-
         public function setCategoriaId($categoriaId) {
             $this->categoriaId = $categoriaId;
         }
 
         // Other methods...
-        public function __construct($nome = null, $ultimaAtualizacao = null, $categoriaId = null) {
+        public function __construct($nome = null, $categoriaId = null) {
             $this->nome = $nome;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->categoriaId = $categoriaId;
-        }
-
-        public function __toString() {
-            return
-                "Nome da categoria: ".$this->nome.
-                "\nUltima atualização: ".$this->ultimaAtualizacao.
-                "\nId: ".$this->categoriaId;
         }
 
         public function save() {
@@ -56,7 +39,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "INSERT INTO categoria (nome, ultima_atualizacao) VALUES(?,?)";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao));
+            $result = $q->execute(array($this->nome, date('Y-m-d H:i:s')));
             Conexao::disconnect();
 
             if ($result) {
@@ -71,7 +54,7 @@
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE categoria set nome = ?, ultima_atualizacao = ? WHERE categoria_id = ?";
             $q = $pdo->prepare($sql);
-            $result = $q->execute(array($this->nome, $this->ultimaAtualizacao, $this->categoriaId));
+            $result = $q->execute(array($this->nome, date('Y-m-d H:i:s'), $this->categoriaId));
             Conexao::disconnect();
 
             if ($result) {

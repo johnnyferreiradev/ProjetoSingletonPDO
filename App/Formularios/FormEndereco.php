@@ -18,9 +18,8 @@
         $cidadeId = $_POST['cidade_id'];
         $cep = $_POST['cep'];
         $telefone = $_POST['telefone'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $endereco = new Endereco($enderecoNome, $endereco2, $bairro, $cidadeId, $cep, $telefone, $ultimaAtualizacao);
+        $endereco = new Endereco($enderecoNome, $endereco2, $bairro, $cidadeId, $cep, $telefone);
 
         $resposta = $endereco->save();
         if ($resposta) {
@@ -45,9 +44,8 @@
         $cidadeId = $_POST['cidade_id'];
         $cep = $_POST['cep'];
         $telefone = $_POST['telefone'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $endereco = new Endereco($enderecoNome, $endereco2, $bairro, $cidadeId, $cep, $telefone, $ultimaAtualizacao, $enderecoId);
+        $endereco = new Endereco($enderecoNome, $endereco2, $bairro, $cidadeId, $cep, $telefone, $enderecoId);
 
         $resposta = $endereco->update();    
         if ($resposta) {
@@ -112,13 +110,6 @@
             type="text"
             name="telefone"
             value="<?php echo $enderecoSelecionado['telefone'] ? $enderecoSelecionado['telefone'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $enderecoSelecionado['ultima_atualizacao'] ? $enderecoSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="endereco_id" value="<?php echo $enderecoSelecionado['endereco_id']?>">

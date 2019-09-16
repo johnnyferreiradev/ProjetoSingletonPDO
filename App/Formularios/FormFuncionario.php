@@ -25,9 +25,8 @@
         $ativo = $_POST['ativo'];
         $usuario = $_POST['usuario'];
         $senha = $_POST['senha'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $funcionario = new Funcionario($primeiroNome, $ultimoNome, $enderecoId, $foto, $email, $lojaId, $ativo, $usuario, $senha, $ultimaAtualizacao);
+        $funcionario = new Funcionario($primeiroNome, $ultimoNome, $enderecoId, $foto, $email, $lojaId, $ativo, $usuario, $senha);
 
         $resposta = $funcionario->save();
         if ($resposta) {
@@ -55,9 +54,8 @@
         $ativo = $_POST['ativo'];
         $usuario = $_POST['usuario'];
         $senha = $_POST['senha'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $funcionario = new Funcionario($primeiroNome, $ultimoNome, $enderecoId, $foto, $email, $lojaId, $ativo, $usuario, $senha, $ultimaAtualizacao, $funcionarioId);
+        $funcionario = new Funcionario($primeiroNome, $ultimoNome, $enderecoId, $foto, $email, $lojaId, $ativo, $usuario, $senha, $funcionarioId);
 
         $resposta = $funcionario->update();    
         if ($resposta) {
@@ -145,13 +143,6 @@
             type="text"
             name="senha"
             value="<?php echo $funcionarioSelecionado['senha'] ? $funcionarioSelecionado['senha'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $funcionarioSelecionado['ultima_atualizacao'] ? $funcionarioSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="funcionario_id" value="<?php echo $funcionarioSelecionado['funcionario_id']?>">

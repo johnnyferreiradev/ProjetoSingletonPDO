@@ -9,9 +9,8 @@
 
     if (!empty($_POST) && $_POST['acao'] == 'salvar') {
         $nome = $_POST['nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $idioma = new Idioma($nome, $ultimaAtualizacao);
+        $idioma = new Idioma($nome);
 
         $resposta = $idioma->save();
         if ($resposta) {
@@ -31,9 +30,8 @@
     if (!empty($_POST) && $_POST['acao'] == 'atualizar') {
         $idiomaId = $_POST['idioma_id'];
         $nome = $_POST['nome'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $idioma = new Idioma($nome, $ultimaAtualizacao, $idiomaId);
+        $idioma = new Idioma($nome, $idiomaId);
 
         $resposta = $idioma->update();    
         if ($resposta) {
@@ -61,13 +59,6 @@
             type="text"
             name="nome"
             value="<?php echo $idiomaSelecionado['nome'] ? $idiomaSelecionado['nome'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $idiomaSelecionado['ultima_atualizacao'] ? $idiomaSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="idioma_id" value="<?php echo $idiomaSelecionado['idioma_id']?>">

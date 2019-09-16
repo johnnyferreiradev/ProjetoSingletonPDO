@@ -23,9 +23,8 @@
         $enderecoId = $_POST['endereco_id'];
         $ativo = $_POST['ativo'];
         $dataCriacao = $_POST['data_criacao'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $cliente = new Cliente($lojaId, $primeiroNome, $ultimoNome, $email, $enderecoId, $ativo, $dataCriacao, $ultimaAtualizacao);
+        $cliente = new Cliente($lojaId, $primeiroNome, $ultimoNome, $email, $enderecoId, $ativo, $dataCriacao);
 
         $resposta = $cliente->save();
         if ($resposta) {
@@ -51,9 +50,8 @@
         $enderecoId = $_POST['endereco_id'];
         $ativo = $_POST['ativo'];
         $dataCriacao = $_POST['data_criacao'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $cliente = new Cliente($lojaId, $primeiroNome, $ultimoNome, $email, $enderecoId, $ativo, $dataCriacao, $ultimaAtualizacao, $clienteId);
+        $cliente = new Cliente($lojaId, $primeiroNome, $ultimoNome, $email, $enderecoId, $ativo, $dataCriacao, $clienteId);
 
         $resposta = $cliente->update();    
         if ($resposta) {
@@ -127,13 +125,6 @@
             type="text"
             name="data_criacao"
             value="<?php echo $clienteSelecionado['data_criacao'] ? $clienteSelecionado['data_criacao'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $clienteSelecionado['ultima_atualizacao'] ? $clienteSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="cliente_id" value="<?php echo $clienteSelecionado['cliente_id']?>">

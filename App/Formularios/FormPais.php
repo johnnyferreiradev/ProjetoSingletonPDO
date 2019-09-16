@@ -9,9 +9,8 @@
 
     if (!empty($_POST) && $_POST['acao'] == 'salvar') {
         $pais = $_POST['pais'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $pais = new Pais($pais, $ultimaAtualizacao);
+        $pais = new Pais($pais);
 
         $resposta = $pais->save();
         if ($resposta) {
@@ -31,9 +30,8 @@
     if (!empty($_POST) && $_POST['acao'] == 'atualizar') {
         $paisId = $_POST['pais_id'];
         $pais = $_POST['pais'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $pais = new Pais($pais, $ultimaAtualizacao, $paisId);
+        $pais = new Pais($pais, $paisId);
 
         $resposta = $pais->update();    
         if ($resposta) {
@@ -61,13 +59,6 @@
             type="text"
             name="pais"
             value="<?php echo $paisSelecionado['pais'] ? $paisSelecionado['pais'] : ''; ?>">
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $paisSelecionado['ultima_atualizacao'] ? $paisSelecionado['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="pais_id" value="<?php echo $paisSelecionado['pais_id']?>">

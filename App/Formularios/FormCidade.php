@@ -13,9 +13,8 @@
     if (!empty($_POST) && $_POST['acao'] == 'salvar') {
         $cidadeNome = $_POST['cidade'];
         $paisId = $_POST['pais_id'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $cidade = new Cidade($paisId, $cidadeNome, $ultimaAtualizacao);
+        $cidade = new Cidade($paisId, $cidadeNome);
 
         $resposta = $cidade->save();
         if ($resposta) {
@@ -36,9 +35,8 @@
         $cidadeId = $_POST['cidade_id'];
         $cidadeNome = $_POST['cidade'];
         $paisId = $_POST['pais_id'];
-        $ultimaAtualizacao = $_POST['ultima_atualizacao'];
 
-        $cidade = new Cidade($paisId, $cidadeNome, $ultimaAtualizacao, $cidadeId);
+        $cidade = new Cidade($paisId, $cidadeNome, $cidadeId);
 
         $resposta = $cidade->update();    
         if ($resposta) {
@@ -74,13 +72,6 @@
                 <option value="<?php echo $pais['pais_id']?>"><?php echo $pais['pais']; ?></option>
             <?php } ?>
         </select>
-
-        <label for="last_update">Ultima Atualização</label>
-        <input
-            id="last_update"
-            type="text"
-            name="ultima_atualizacao"
-            value="<?php echo $cidadeSelecionada['ultima_atualizacao'] ? $cidadeSelecionada['ultima_atualizacao'] : ''; ?>">
 
         <?php if(!empty($_POST['acao']) && $_POST['acao'] == 'carregar_info') { ?>
             <input type="hidden" name="cidade_id" value="<?php echo $cidadeSelecionada['cidade_id']?>">

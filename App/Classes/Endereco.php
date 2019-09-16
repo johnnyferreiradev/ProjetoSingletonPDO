@@ -13,7 +13,6 @@
         private $cidadeId;
         private $cep;
         private $telefone;
-        private $ultimaAtualizacao;
         private $enderecoId;
 
         // Geters...
@@ -36,14 +35,13 @@
         }
 
         // Other methods...
-        public function __construct($endereco = null, $endereco2 = null, $bairro = null, $cidadeId = null, $cep = null, $telefone = null, $ultimaAtualizacao = null, $enderecoId = null) {
+        public function __construct($endereco = null, $endereco2 = null, $bairro = null, $cidadeId = null, $cep = null, $telefone = null, $enderecoId = null) {
             $this->endereco = $endereco;
             $this->endereco2 = $endereco2;
             $this->bairro = $bairro;
             $this->cidadeId = $cidadeId;
             $this->cep = $cep;
             $this->telefone = $telefone;
-            $this->ultimaAtualizacao = $ultimaAtualizacao;
             $this->enderecoId = $enderecoId;
         }
 
@@ -60,7 +58,7 @@
                     $this->cidadeId,
                     $this->cep,
                     $this->telefone,
-                    $this->ultimaAtualizacao
+                    date('Y-m-d H:i:s')
                 ));
             Conexao::disconnect();
 
@@ -84,7 +82,7 @@
                 $this->cidadeId,
                 $this->cep,
                 $this->telefone,
-                $this->ultimaAtualizacao,
+                date('Y-m-d H:i:s'),
                 $this->enderecoId
             ));
             Conexao::disconnect();
