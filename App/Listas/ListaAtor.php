@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Listas;
+
+    require '../autoload.php';
 
     use App\Classes\Ator;
     use App\Classes\FilmeAtor;
@@ -65,7 +67,7 @@
 </head>
 <body>
     <h1 class="list-title">Lista de Atores cadastrados</h1>
-    <a class="btn-new" href="FormAtor.php">Novo registro</a>
+    <a class="btn-new" href="../Formularios/FormAtor.php">Novo registro</a>
     <table class="list-table">
         <tr class="row-titles">
             <th>ID</th>
@@ -81,7 +83,7 @@
                 <td><?php echo $ator['ultimo_nome']?></td>
                 <td><?php echo $ator['ultima_atualizacao']?></td>
                 <td>
-                    <form action="FormAtor.php" method="POST">
+                    <form action="../Formularios/FormAtor.php" method="POST">
                         <input type="hidden" name="ator_id" value="<?php echo $ator['ator_id']?>">
                         <input type="hidden" name="acao" value="carregar_info">
                         <button type="submit" class="btn-edit">Editar</button>

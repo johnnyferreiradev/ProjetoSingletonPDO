@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Listas;
+
+    require '../autoload.php';
 
     use App\Classes\Pais;
 
@@ -64,7 +66,7 @@
 </head>
 <body>
     <h1 class="list-title">Lista de Paises cadastrados</h1>
-    <a class="btn-new" href="FormPais.php">Novo registro</a>
+    <a class="btn-new" href="../Formularios/FormPais.php">Novo registro</a>
     <table class="list-table">
         <tr class="row-titles">
             <th>ID</th>
@@ -78,7 +80,7 @@
                 <td><?php echo $pais['pais']?></td>
                 <td><?php echo $pais['ultima_atualizacao']?></td>
                 <td>
-                    <form action="FormPais.php" method="POST">
+                    <form action="../Formularios/FormPais.php" method="POST">
                         <input type="hidden" name="pais_id" value="<?php echo $pais['pais_id']?>">
                         <input type="hidden" name="acao" value="carregar_info">
                         <button type="submit" class="btn-edit">Editar</button>

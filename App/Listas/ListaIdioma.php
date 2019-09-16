@@ -1,10 +1,12 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Listas;
 
-    use App\Classes\Cidade;
+    require '../autoload.php';
+
+    use App\Classes\Idioma;
 
     // Lógica da paginação
-    $dados = Cidade::listAll();
+    $dados = Idioma::listAll();
     $limite = 10;
     $qtdDados = count($dados);
     $qtdPaginas = ceil($qtdDados / $limite);
@@ -23,21 +25,21 @@
         $proxima = $pagina + 1;
     }
 
-    $cidade = new Cidade();
-    $dadosPaginados = $cidade->paginate($inicio, $limite);
+    $idioma = new Idioma();
+    $dadosPaginados = $idioma->paginate($inicio, $limite);
 
     if(!empty($_GET)) {
         
         if($_GET['acao'] == 'excluir') {
-            $cidadeId = $_GET['cidade_id'];
-            $cidade = new Cidade();
-            $cidade->setAtorId($cidadeId);
-            $encontrado = $cidade->findById();
+            $idiomaId = $_GET['idioma_id'];
+            $idioma = new Idioma();
+            $idioma->setIdiomaId($idiomaId);
+            $encontrado = $idioma->findById();
 
             $resultado = null;
             if ($encontrado) {
-                $resultado = $cidade->remove();
-                header("location: ListaCidade.php?acao=&pagina=$pagina");
+                $resultado = $idioma->remove();
+                header("location: ListaIdioma.php?acao=&pagina=$pagina");
             } else {
                 echo "Usuário não encontrado!";
             }
@@ -51,7 +53,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lista de cidades</title>
+    <title>Lista de idiomas</title>
     <style>
         table {
             width: 100%;
@@ -63,43 +65,41 @@
     </style>
 </head>
 <body>
-    <h1 class="list-title">Lista de cidades cadastrados</h1>
-    <a class="btn-new" href="FormCidade.php">Novo registro</a>
+    <h1 class="list-title">Lista de idiomas cadastrados</h1>
+    <a class="btn-new" href="../Formularios/FormIdioma.php">Novo registro</a>
     <table class="list-table">
         <tr class="row-titles">
             <th>ID</th>
-            <th>Cidade</th>
-            <th>Pais</th>
+            <th>Nome</th>
             <th>Ultima atualização</th>
             <th>Ações</th>
         </tr>
-        <?php foreach($dadosPaginados as $cidade) { ?>
+        <?php foreach($dadosPaginados as $idioma) { ?>
             <tr class="row-results">
-                <td><?php echo $cidade['cidade_id']?></td>
-                <td><?php echo $cidade['cidade']?></td>
-                <td><?php echo $cidade['pais_id']?></td>
-                <td><?php echo $cidade['ultima_atualizacao']?></td>
+                <td><?php echo $idioma['idioma_id']?></td>
+                <td><?php echo $idioma['nome']?></td>
+                <td><?php echo $idioma['ultima_atualizacao']?></td>
                 <td>
-                    <form action="FormCidade.php" method="POST">
-                        <input type="hidden" name="cidade_id" value="<?php echo $cidade['cidade_id']?>">
+                    <form action="../Formularios/FormIdioma.php" method="POST">
+                        <input type="hidden" name="idioma_id" value="<?php echo $idioma['idioma_id']?>">
                         <input type="hidden" name="acao" value="carregar_info">
                         <button type="submit" class="btn-edit">Editar</button>
                     </form>
 
-                    <button onclick="confirmarExclusao(<?php echo $cidade['cidade_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
+                    <button onclick="confirmarExclusao(<?php echo $idioma['idioma_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
                 </td>
             </tr>
         <?php } ?>
     </table>
 
-    <a href="ListaCidade.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
-    <a href="ListaCidade.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+    <a href="ListaIdioma.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
+    <a href="ListaIdioma.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
 
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {
             let resposta = confirm('ATENÇÃO! Todos os dados do elemento selecionado serão removidos!\nDeseja realmente excluir?');
             if (resposta) {
-                window.location.href = `ListaCidade.php?cidade_id=${id}&acao=excluir&pagina=${pagina}`;
+                window.location.href = `ListaIdioma.php?idioma_id=${id}&acao=excluir&pagina=${pagina}`;
             }
         }
     </script>

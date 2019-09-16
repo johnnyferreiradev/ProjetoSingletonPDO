@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Formularios;
+
+    require '../autoload.php';
 
     use App\Classes\Idioma;
 
@@ -13,7 +15,7 @@
 
         $resposta = $idioma->save();
         if ($resposta) {
-            header('location: ListaIdioma.php');
+            header('location: ../Listas/ListaIdioma.php');
         } else {
             echo 'Erro ao cadastrar!';
         }
@@ -35,7 +37,7 @@
 
         $resposta = $idioma->update();    
         if ($resposta) {
-            header('location: ListaIdioma.php');
+            header('location: ../Listas/ListaIdioma.php');
         } else {
             echo 'Erro ao atualizar!';
         }

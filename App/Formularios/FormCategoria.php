@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Formularios;
+
+    require '../autoload.php';
 
     use App\Classes\Categoria;
 
@@ -13,7 +15,7 @@
 
         $resposta = $categoria->save();
         if ($resposta) {
-            header('location: ListaCategoria.php');
+            header('location: ../Listas/ListaCategoria.php');
         } else {
             echo 'Erro ao cadastrar!';
         }
@@ -35,7 +37,7 @@
 
         $resposta = $categoria->update();    
         if ($resposta) {
-            header('location: ListaCategoria.php');
+            header('location: ../Listas/ListaCategoria.php');
         } else {
             echo 'Erro ao atualizar!';
         }

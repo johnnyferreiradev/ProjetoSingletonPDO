@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Formularios;
+
+    require '../autoload.php';
 
     use App\Classes\Pais;
 
@@ -13,7 +15,7 @@
 
         $resposta = $pais->save();
         if ($resposta) {
-            header('location: ListaPais.php');
+            header('location: ../Listas/ListaPais.php');
         } else {
             echo 'Erro ao cadastrar!';
         }
@@ -35,7 +37,7 @@
 
         $resposta = $pais->update();    
         if ($resposta) {
-            header('location: ListaPais.php');
+            header('location: ../Listas/ListaPais.php');
         } else {
             echo 'Erro ao atualizar!';
         }

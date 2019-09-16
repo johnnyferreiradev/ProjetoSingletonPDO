@@ -12,11 +12,11 @@
 </head>
 <body>
     <h1>Sistema da Locadora!</h1>
-    <a href="ListaAtor.php?acao=&pagina=1">Atores</a><br>
-    <a href="ListaFilme.php?acao=&pagina=1">Filmes</a><br>
-    <a href="ListaIdioma.php?acao=&pagina=1">Idiomas</a><br>
-    <a href="ListaCategoria.php?acao=&pagina=1">Categorias</a><br>
-    <a href="ListaCidade.php?acao=&pagina=1">Cidades</a><br>
-    <a href="ListaPais.php">Países</a>
+    <a href="App/Listas/ListaAtor.php?acao=&pagina=1">Atores</a><br>
+    <a href="App/Listas/ListaFilme.php?acao=&pagina=1">Filmes</a><br>
+    <a href="App/Listas/ListaIdioma.php?acao=&pagina=1">Idiomas</a><br>
+    <a href="App/Listas/ListaCategoria.php?acao=&pagina=1">Categorias</a><br>
+    <a href="App/Listas/ListaCidade.php?acao=&pagina=1">Cidades</a><br>
+    <a href="App/Listas/ListaPais.php">Países</a>
 </body>
 </html>

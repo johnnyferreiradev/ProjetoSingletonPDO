@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Listas;
+
+    require '../autoload.php';
 
     use App\Classes\Filme;
 
@@ -64,7 +66,7 @@
 </head>
 <body>
     <h1 class="list-title">Lista de Filmes cadastrados</h1>
-    <a class="btn-new" href="FormFilme.php">Novo registro</a>
+    <a class="btn-new" href="../Formularios/FormFilme.php">Novo registro</a>
     <table class="list-table">
         <tr class="row-titles">
             <th>ID</th>
@@ -98,7 +100,7 @@
                 <td><?php echo $filme['recursos_especiais']?></td>
                 <td><?php echo $filme['ultima_atualizacao']?></td>
                 <td>
-                    <form action="FormFilme.php" method="POST">
+                    <form action="../Formularios/FormFilme.php" method="POST">
                         <input type="hidden" name="filme_id" value="<?php echo $filme['filme_id']?>">
                         <input type="hidden" name="acao" value="carregar_info">
                         <button type="submit" class="btn-edit">Editar</button>

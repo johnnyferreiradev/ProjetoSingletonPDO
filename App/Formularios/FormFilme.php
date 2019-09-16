@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Formularios;
+
+    require '../autoload.php';
 
     use App\Classes\Filme;
     use App\Classes\Idioma;
@@ -27,7 +29,7 @@
 
         $resposta = $filme->save();
         if ($resposta) {
-            header('location: ListaFilme.php');
+            header('location: ../Listas/ListaFilme.php');
         } else {
             echo 'Erro ao cadastrar!';
         }
@@ -59,7 +61,7 @@
 
         $resposta = $filme->update();    
         if ($resposta) {
-            header('location: ListaFilme.php');
+            header('location: ../Listas/ListaFilme.php');
         } else {
             echo 'Erro ao atualizar!';
         }

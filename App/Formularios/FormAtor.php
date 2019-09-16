@@ -1,5 +1,7 @@
 <?php
-    require __DIR__.'/App/autoload.php';
+    namespace App\Formularios;
+
+    require '../autoload.php';
 
     use App\Classes\Ator;
 
@@ -14,7 +16,7 @@
 
         $resposta = $ator->save();
         if ($resposta) {
-            header('location: ListaAtor.php');
+            header('location: ../Listas/ListaAtor.php');
         } else {
             echo 'Erro ao cadastrar!';
         }
@@ -37,7 +39,7 @@
 
         $resposta = $ator->update();    
         if ($resposta) {
-            header('location: ListaAtor.php');
+            header('location: ../Listas/ListaAtor.php');
         } else {
             echo 'Erro ao atualizar!';
         }
