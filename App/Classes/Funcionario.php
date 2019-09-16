@@ -90,7 +90,7 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE ator set primeiro_nome = ?, ultimo_nome = ?, endereco_id = ?, foto = ?, email = ?, loja_id = ?, ativo = ?, usuario = ?, senha = ?, ultima_atualizacao = ? WHERE funcionario_id = ?";
+            $sql = "UPDATE funcionario set primeiro_nome = ?, ultimo_nome = ?, endereco_id = ?, foto = ?, email = ?, loja_id = ?, ativo = ?, usuario = ?, senha = ?, ultima_atualizacao = ? WHERE funcionario_id = ?";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array(
                     $this->primeiroNome,

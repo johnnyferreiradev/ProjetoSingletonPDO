@@ -60,7 +60,7 @@
         public function save() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql =  "INSERT INTO cliente (loja_id, primeiro_nome, ultimo_nome, email, endereco_id, ativo, dataCriacao, ultima_atualizacao)
+            $sql =  "INSERT INTO cliente (loja_id, primeiro_nome, ultimo_nome, email, endereco_id, ativo, data_criacao, ultima_atualizacao)
                     VALUES(?,?,?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array(
@@ -85,7 +85,7 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql =  "UPDATE cliente set loja_id = ?, primeiro_nome = ?, ultimo_nome = ?, email = ?, endereco_id = ?, ativo = ?, dataCriacao = ?, ultima_atualizacao = ? 
+            $sql =  "UPDATE cliente set loja_id = ?, primeiro_nome = ?, ultimo_nome = ?, email = ?, endereco_id = ?, ativo = ?, data_criacao = ?, ultima_atualizacao = ? 
                     WHERE cliente_id = ?";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array(

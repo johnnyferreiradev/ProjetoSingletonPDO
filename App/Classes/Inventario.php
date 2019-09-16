@@ -85,4 +85,14 @@
                 return false;
             }
         }
+
+        public static function listAll() {
+            $pdo = Conexao::getInstance();
+            $sql = 'SELECT * FROM inventario ORDER BY inventario_id DESC';
+            $q = $pdo->query($sql);
+            $data = $q->fetchAll();
+            Conexao::disconnect();
+
+            return $data;
+        }
     }

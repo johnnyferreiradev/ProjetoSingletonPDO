@@ -63,7 +63,7 @@
         public function save() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO pagamento (clienteId, funcionario_id, aluguel_id, valor, data_de_pagamento, ultima_atualizacao) VALUES(?,?,?,?,?,?)";
+            $sql = "INSERT INTO pagamento (cliente_id, funcionario_id, aluguel_id, valor, data_de_pagamento, ultima_atualizacao) VALUES(?,?,?,?,?,?)";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao));
             Conexao::disconnect();
@@ -78,7 +78,7 @@
         public function update() {
             $pdo = Conexao::getInstance();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql =  "UPDATE pagamento set clienteId = ?, funcionario_id = ?, aluguel_id = ?, valor = ?, data_de_pagamento = ?, ultima_atualizacao = ? 
+            $sql =  "UPDATE pagamento set cliente_id = ?, funcionario_id = ?, aluguel_id = ?, valor = ?, data_de_pagamento = ?, ultima_atualizacao = ? 
                     WHERE pagamento_id = ?";
             $q = $pdo->prepare($sql);
             $result = $q->execute(array($this->clienteId, $this->funcionarioId, $this->aluguelId, $this->valor, $this->dataPagamento, $this->ultimaAtualizacao, $this->pagamentoId));

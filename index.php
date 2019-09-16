@@ -17,6 +17,11 @@
     <a href="App/Listas/ListaIdioma.php?acao=&pagina=1">Idiomas</a><br>
     <a href="App/Listas/ListaCategoria.php?acao=&pagina=1">Categorias</a><br>
     <a href="App/Listas/ListaCidade.php?acao=&pagina=1">Cidades</a><br>
+    <a href="App/Listas/ListaAluguel.php?acao=&pagina=1">Alugueis</a><br>
+    <a href="App/Listas/ListaFuncionario.php?acao=&pagina=1">Funcionarios</a><br>
+    <a href="App/Listas/ListaCliente.php?acao=&pagina=1">Clientes</a><br>
+    <a href="App/Listas/ListaEndereco.php?acao=&pagina=1">Enderecos</a><br>
+    <a href="App/Listas/ListaPagamento.php?acao=&pagina=1">Pagamentos</a><br>
     <a href="App/Listas/ListaPais.php">Países</a>
 </body>
 </html>

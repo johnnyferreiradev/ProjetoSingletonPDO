@@ -85,4 +85,14 @@
                 return false;
             }
         }
+
+        public static function listAll() {
+            $pdo = Conexao::getInstance();
+            $sql = 'SELECT * FROM loja ORDER BY loja_id DESC';
+            $q = $pdo->query($sql);
+            $data = $q->fetchAll();
+            Conexao::disconnect();
+
+            return $data;
+        }
     }
