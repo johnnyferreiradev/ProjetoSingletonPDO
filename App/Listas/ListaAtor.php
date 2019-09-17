@@ -54,50 +54,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/table.css">
+    <script src="https://kit.fontawesome.com/2a2ac02fa4.js"></script>
     <title>Lista de Atores</title>
-    <style>
-        table {
-            width: 100%;
-        }
-
-        table th {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
     <h1 class="list-title">Lista de Atores cadastrados</h1>
-    <a class="btn-new" href="../Formularios/FormAtor.php">Novo registro</a>
-    <table class="list-table">
-        <tr class="row-titles">
-            <th>ID</th>
-            <th>Primeiro Nome</th>
-            <th>Ultimo Nome</th>
-            <th>Ultima atualização</th>
-            <th>Ações</th>
-        </tr>
-        <?php foreach($dadosPaginados as $ator) { ?>
-            <tr class="row-results">
-                <td><?php echo $ator['ator_id']?></td>
-                <td><?php echo $ator['primeiro_nome']?></td>
-                <td><?php echo $ator['ultimo_nome']?></td>
-                <td><?php echo $ator['ultima_atualizacao']?></td>
-                <td>
-                    <form action="../Formularios/FormAtor.php" method="POST">
-                        <input type="hidden" name="ator_id" value="<?php echo $ator['ator_id']?>">
-                        <input type="hidden" name="acao" value="carregar_info">
-                        <button type="submit" class="btn-edit">Editar</button>
-                    </form>
-
-                    <button onclick="confirmarExclusao(<?php echo $ator['ator_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
-                </td>
+    <div class="container-table">
+        <a class="btn-new" href="../Formularios/FormAtor.php"><i class="fas fa-plus-circle"></i> Novo registro</a>
+        <table class="list-table">
+            <tr class="row-titles">
+                <th>ID</th>
+                <th>Primeiro Nome</th>
+                <th>Ultimo Nome</th>
+                <th>Ultima atualização</th>
+                <th>Ações</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php foreach($dadosPaginados as $ator) { ?>
+                <tr class="row-results">
+                    <td><?php echo $ator['ator_id']?></td>
+                    <td><?php echo $ator['primeiro_nome']?></td>
+                    <td><?php echo $ator['ultimo_nome']?></td>
+                    <td><?php echo $ator['ultima_atualizacao']?></td>
+                    <td>
+                        <form action="../Formularios/FormAtor.php" method="POST">
+                            <input type="hidden" name="ator_id" value="<?php echo $ator['ator_id']?>">
+                            <input type="hidden" name="acao" value="carregar_info">
+                            <button type="submit" class="btn-edit">Editar</button>
+                        </form>
 
-    <a href="ListaAtor.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
-    <a href="ListaAtor.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+                        <button onclick="confirmarExclusao(<?php echo $ator['ator_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
 
+        <a href="ListaAtor.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
+        <a href="ListaAtor.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+    </div>
+    
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {
             let resposta = confirm('ATENÇÃO! Todos os dados do elemento selecionado serão removidos!\nDeseja realmente excluir?');

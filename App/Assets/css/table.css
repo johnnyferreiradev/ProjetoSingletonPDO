@@ -17,6 +17,7 @@
     border-radius: 10px;
     box-shadow: 2px 4px 8px #0002;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .list-table th, .list-table td {
@@ -70,3 +71,24 @@ td form {
     font-weight: bold;
     margin-bottom: 20px;
 }
+
+.btn-previus, .btn-next {
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 2px 4px 8px #0002;
+}
+
+.btn-previus:hover, .btn-next:hover {
+    background-color: #ccc;
+}
+
+/* .btn-next {
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+    padding: 10px;
+} */

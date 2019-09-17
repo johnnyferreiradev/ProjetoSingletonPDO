@@ -53,55 +53,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/table.css">
+    <script src="https://kit.fontawesome.com/2a2ac02fa4.js"></script>
     <title>Lista de pagamentos</title>
-    <style>
-        table {
-            width: 100%;
-        }
-
-        table th {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
     <h1 class="list-title">Lista de pagamentos cadastrados</h1>
-    <a class="btn-new" href="../Formularios/FormPagamento.php">Novo registro</a>
-    <table class="list-table">
-        <tr class="row-titles">
-            <th>ID</th>
-            <th>Cliente ID</th>
-            <th>Funcionario ID</th>
-            <th>Aluguel ID</th>
-            <th>Valor</th>
-            <th>Data de pagamento</th>
-            <th>Ultima atualização</th>
-            <th>Ações</th>
-        </tr>
-        <?php foreach($dadosPaginados as $pagamento) { ?>
-            <tr class="row-results">
-                <td><?php echo $pagamento['pagamento_id']?></td>
-                <td><?php echo $pagamento['cliente_id']?></td>
-                <td><?php echo $pagamento['funcionario_id']?></td>
-                <td><?php echo $pagamento['aluguel_id']?></td>
-                <td><?php echo $pagamento['valor']?></td>
-                <td><?php echo $pagamento['data_de_pagamento']?></td>
-                <td><?php echo $pagamento['ultima_atualizacao']?></td>
-                <td>
-                    <form action="../Formularios/FormPagamento.php" method="POST">
-                        <input type="hidden" name="pagamento_id" value="<?php echo $pagamento['pagamento_id']?>">
-                        <input type="hidden" name="acao" value="carregar_info">
-                        <button type="submit" class="btn-edit">Editar</button>
-                    </form>
-
-                    <button onclick="confirmarExclusao(<?php echo $pagamento['pagamento_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
-                </td>
+    <div class="container-table">
+        <a class="btn-new" href="../Formularios/FormPagamento.php"><i class="fas fa-plus-circle"></i> Novo registro</a>
+        <table class="list-table">
+            <tr class="row-titles">
+                <th>ID</th>
+                <th>Cliente ID</th>
+                <th>Funcionario ID</th>
+                <th>Aluguel ID</th>
+                <th>Valor</th>
+                <th>Data de pagamento</th>
+                <th>Ultima atualização</th>
+                <th>Ações</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php foreach($dadosPaginados as $pagamento) { ?>
+                <tr class="row-results">
+                    <td><?php echo $pagamento['pagamento_id']?></td>
+                    <td><?php echo $pagamento['cliente_id']?></td>
+                    <td><?php echo $pagamento['funcionario_id']?></td>
+                    <td><?php echo $pagamento['aluguel_id']?></td>
+                    <td><?php echo $pagamento['valor']?></td>
+                    <td><?php echo $pagamento['data_de_pagamento']?></td>
+                    <td><?php echo $pagamento['ultima_atualizacao']?></td>
+                    <td>
+                        <form action="../Formularios/FormPagamento.php" method="POST">
+                            <input type="hidden" name="pagamento_id" value="<?php echo $pagamento['pagamento_id']?>">
+                            <input type="hidden" name="acao" value="carregar_info">
+                            <button type="submit" class="btn-edit">Editar</button>
+                        </form>
 
-    <a href="ListaPagamento.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
-    <a href="ListaPagamento.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+                        <button onclick="confirmarExclusao(<?php echo $pagamento['pagamento_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+
+        <a href="ListaPagamento.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
+        <a href="ListaPagamento.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+    </div>
 
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {

@@ -53,49 +53,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/table.css">
+    <script src="https://kit.fontawesome.com/2a2ac02fa4.js"></script>
     <title>Lista de cidades</title>
-    <style>
-        table {
-            width: 100%;
-        }
-
-        table th {
-            border: 1px solid black;
-        }
-    </style>
 </head>
 <body>
     <h1 class="list-title">Lista de cidades cadastrados</h1>
-    <a class="btn-new" href="../Formularios/FormCidade.php">Novo registro</a>
-    <table class="list-table">
-        <tr class="row-titles">
-            <th>ID</th>
-            <th>Cidade</th>
-            <th>Pais</th>
-            <th>Ultima atualização</th>
-            <th>Ações</th>
-        </tr>
-        <?php foreach($dadosPaginados as $cidade) { ?>
-            <tr class="row-results">
-                <td><?php echo $cidade['cidade_id']?></td>
-                <td><?php echo $cidade['cidade']?></td>
-                <td><?php echo $cidade['pais_id']?></td>
-                <td><?php echo $cidade['ultima_atualizacao']?></td>
-                <td>
-                    <form action="../Formularios/FormCidade.php" method="POST">
-                        <input type="hidden" name="cidade_id" value="<?php echo $cidade['cidade_id']?>">
-                        <input type="hidden" name="acao" value="carregar_info">
-                        <button type="submit" class="btn-edit">Editar</button>
-                    </form>
-
-                    <button onclick="confirmarExclusao(<?php echo $cidade['cidade_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
-                </td>
+    <div class="container-table">
+        <a class="btn-new" href="../Formularios/FormCidade.php"><i class="fas fa-plus-circle"></i> Novo registro</a>
+        <table class="list-table">
+            <tr class="row-titles">
+                <th>ID</th>
+                <th>Cidade</th>
+                <th>Pais</th>
+                <th>Ultima atualização</th>
+                <th>Ações</th>
             </tr>
-        <?php } ?>
-    </table>
+            <?php foreach($dadosPaginados as $cidade) { ?>
+                <tr class="row-results">
+                    <td><?php echo $cidade['cidade_id']?></td>
+                    <td><?php echo $cidade['cidade']?></td>
+                    <td><?php echo $cidade['pais_id']?></td>
+                    <td><?php echo $cidade['ultima_atualizacao']?></td>
+                    <td>
+                        <form action="../Formularios/FormCidade.php" method="POST">
+                            <input type="hidden" name="cidade_id" value="<?php echo $cidade['cidade_id']?>">
+                            <input type="hidden" name="acao" value="carregar_info">
+                            <button type="submit" class="btn-edit">Editar</button>
+                        </form>
 
-    <a href="ListaCidade.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
-    <a href="ListaCidade.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+                        <button onclick="confirmarExclusao(<?php echo $cidade['cidade_id']; ?>, <?php echo $pagina; ?>)" class="btn-remove">Excluir</button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </table>
+
+        <a href="ListaCidade.php?acao=&pagina=<?php echo $anterior; ?>" class="btn-previus">Anterior</a>
+        <a href="ListaCidade.php?acao=&pagina=<?php echo $proxima; ?>" class="btn-next">Proxima</a>
+    </div>
 
     <script language="Javascript">
         function confirmarExclusao(id, pagina) {
