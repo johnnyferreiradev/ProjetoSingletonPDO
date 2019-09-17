@@ -69,10 +69,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/forms.css">
     <title>Formulário pagamento</title>
 </head>
 <body>
     <form action="FormPagamento.php" method="POST">
+        <h1>Pagamento</h1>
         <!-- Cliente ID -->
         Cliente
         <select name="cliente_id">

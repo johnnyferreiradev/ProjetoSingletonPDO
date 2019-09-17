@@ -73,10 +73,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/forms.css">
     <title>Formulário filme</title>
 </head>
 <body>
     <form action="FormFilme.php" method="POST">
+        <h1>Filme</h1>
         <label for="title_filme">Título</label>
         <input
             id="title_filme"

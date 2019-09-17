@@ -69,10 +69,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/forms.css">
     <title>Formulário cliente</title>
 </head>
 <body>
     <form action="FormCliente.php" method="POST">
+        <h1>Cliente</h1>
         <!-- Loja Id -->
         Loja ID
         <select name="loja_id">

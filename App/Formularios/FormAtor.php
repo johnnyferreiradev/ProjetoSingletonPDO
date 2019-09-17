@@ -51,10 +51,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/general.css">
+    <link rel="stylesheet" type="text/css" href="../Assets/css/forms.css">
     <title>Formulário ator</title>
 </head>
 <body>
     <form action="FormAtor.php" method="POST">
+        <h1>Ator</h1>
         <label for="first_name">Primeiro Nome</label>
         <input
             id="first_name"
